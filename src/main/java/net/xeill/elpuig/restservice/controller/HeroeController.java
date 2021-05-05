@@ -32,7 +32,7 @@ import net.xeill.elpuig.restservice.repository.HeroeRepository;
 public class HeroeController {
 
     @Autowired
-    HeroeRepository heroeRepository;
+     HeroeRepository heroeRepository;
 
     @GetMapping("/Heroes")
     public List<Heroe> getAllUsers() {
