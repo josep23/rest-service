@@ -1,12 +1,8 @@
 package net.xeill.elpuig.restservice.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +18,10 @@ public class Heroe {
     private Integer vida;
     @NotBlank
     private String rol;
+
+    @OneToMany (fetch=FetchType.LAZY)
+    @JoinColumn(name="heroe_id")
+    List<Habilidades> habilidades;
 
     public Integer getHeroe_id() {
         return heroe_id;

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import net.xeill.elpuig.restservice.model.Persona;
+import net.xeill.elpuig.restservice.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,47 +33,48 @@ import net.xeill.elpuig.restservice.repository.UserRepository;
 public class PersonaController {
 
     @Autowired
-    UserRepository userRepository;
+    PersonaRepository personaRepository;
 
-    @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @GetMapping("/persona")
+    public List<Persona> getAllPersona() {
+        return personaRepository.findAll();
     }
 
-    @PostMapping("/users")
+    @PostMapping("/persona")
     //public Note createNote(@Valid @RequestBody Note note) {
     //https://stackoverflow.com/questions/51337489/content-type-multipart-form-databoundary-webkitformboundary-not-suppor
-    public User createUser(@Valid @RequestBody User user) {
-        return userRepository.save(user);
+    public Persona createPersona(@Valid @RequestBody Persona persona) {
+        return personaRepository.save(persona);
     }
 
-    @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable(value = "id") Integer userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+    @GetMapping("/persona/{id}")
+    public Persona getPersonaById(@PathVariable(value = "id") Integer persona_id) {
+        return personaRepository.findById(persona_id)
+                .orElseThrow(() -> new ResourceNotFoundException("Persona", "id", persona_id));
     }
 
-    @PutMapping("/users/{id}")
-    public User updateUser(@PathVariable(value = "id") Integer userId,
-                           @Valid @RequestBody User userDetails) {
+    @PutMapping("/persona/{id}")
+    public Persona updatePersona(@PathVariable(value = "id") Integer persona_id,
+                           @Valid @RequestBody Persona personaDetails) {
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+        Persona persona = personaRepository.findById(persona_id)
+                .orElseThrow(() -> new ResourceNotFoundException("Persona", "id", persona_id));
 
-        user.setEmail(userDetails.getEmail());
-        user.setFullname(userDetails.getFullname());
-        user.setPassword(userDetails.getPassword());
+        persona.setPersona_id(personaDetails.getPersona_id());
+        persona.setFullname(personaDetails.getFullname());
+        persona.setHeroe_id(personaDetails.getHeroe_id());
 
-        User updatedUser = userRepository.save(user);
-        return updatedUser;
+
+        Persona updatedPersona = personaRepository.save(persona);
+        return updatedPersona;
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Integer userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+    @DeleteMapping("/persona/{id}")
+    public ResponseEntity<?> deletePersona(@PathVariable(value = "id") Integer persona_id) {
+        Persona persona = personaRepository.findById(persona_id)
+                .orElseThrow(() -> new ResourceNotFoundException("Persona", "id", persona_id));
 
-        userRepository.delete(user);
+        personaRepository.delete(persona);
 
         return ResponseEntity.ok().build();
     }
