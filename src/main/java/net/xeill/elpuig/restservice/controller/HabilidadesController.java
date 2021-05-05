@@ -48,21 +48,22 @@ public class HabilidadesController {
     }
 
     @GetMapping("/habilidades/{id}")
-    public Habilidades getHabilidadById(@PathVariable(value = "id_habilidades") Integer id_habilidades) {
+    public Habilidades getHabilidadById(@PathVariable(value = "id") Integer id_habilidades) {
         return habilidadesRepository.findById(id_habilidades)
-                .orElseThrow(() -> new ResourceNotFoundException("Habilidades", "id_habilidades", id_habilidades));
+                .orElseThrow(() -> new ResourceNotFoundException("Habilidades", "id", id_habilidades));
     }
 
     @PutMapping("/habilidades/{id}")
-    public Habilidades updateHabilidades(@PathVariable(value = "id_habilidades") Integer id_habilidades,
+    public Habilidades updateHabilidades(@PathVariable(value = "id") Integer id_habilidades,
                                          @Valid @RequestBody Habilidades habilidadesDetails) {
 
         Habilidades habilidades = habilidadesRepository.findById(id_habilidades)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id_habilidades", id_habilidades));
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id_habilidades));
 
         habilidades.setId_habilidades(habilidadesDetails.getId_habilidades());
         habilidades.setNombre_habilidad(habilidadesDetails.getNombre_habilidad());
         habilidades.setCooldown(habilidadesDetails.getCooldown());
+        habilidades.setHeroe_id(habilidadesDetails.getHeroe_id());
 
         Habilidades updatedHabilidades = habilidadesRepository.save(habilidades);
         return updatedHabilidades;

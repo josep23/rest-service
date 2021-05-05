@@ -19,6 +19,17 @@ public class Persona {
     @NotBlank
     private String fullname;
 
+    public Integer getHeroe_id() {
+        return heroe_id;
+    }
+
+    public void setHeroe_id(Integer heroe_id) {
+        this.heroe_id = heroe_id;
+    }
+
+    @NotBlank
+    private Integer heroe_id;
+
     public Integer getPersona_id() {
         return persona_id;
     }

@@ -20,6 +20,16 @@ public class Habilidades {
     private String nombre_habilidad;
     @NotBlank
     private Integer cooldown;
+    @NotBlank
+    private Integer heroe_id;
+
+    public Integer getHeroe_id() {
+        return heroe_id;
+    }
+
+    public void setHeroe_id(Integer heroe_id) {
+        this.heroe_id = heroe_id;
+    }
 
     public Integer getId_habilidades() {
         return id_habilidades;

@@ -46,9 +46,9 @@ public class HeroeController {
         return heroeRepository.save(heroe);
     }
     @GetMapping("/Heroes/{id}")
-    public Heroe getUserById(@PathVariable(value = "heroe_id") Integer heroe_id) {
+    public Heroe getUserById(@PathVariable(value = "id") Integer heroe_id) {
         return heroeRepository.findById(heroe_id)
-                .orElseThrow(() -> new ResourceNotFoundException("Heroe", "heroe_id", heroe_id));
+                .orElseThrow(() -> new ResourceNotFoundException("Heroe", "id", heroe_id));
     }
 
     @PutMapping("/Heroes/{id}")
@@ -56,7 +56,7 @@ public class HeroeController {
                            @Valid @RequestBody Heroe heroeDetails) {
 
         Heroe heroe = heroeRepository.findById(heroe_id)
-                .orElseThrow(() -> new ResourceNotFoundException("Heroes", "heroe_id", heroe_id));
+                .orElseThrow(() -> new ResourceNotFoundException("Heroes", "id", heroe_id));
 
         heroe.setHeroe_id(heroeDetails.getHeroe_id());
         heroe.setNombre(heroeDetails.getNombre());
