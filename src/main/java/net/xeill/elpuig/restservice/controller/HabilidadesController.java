@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.xeill.elpuig.restservice.exception.ResourceNotFoundException;
 
-import net.xeill.elpuig.restservice.model.User;
+import net.xeill.elpuig.restservice.model.User;<
 import net.xeill.elpuig.restservice.repository.UserRepository;
 
 /**
